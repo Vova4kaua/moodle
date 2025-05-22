@@ -10,7 +10,7 @@ RUN wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add - && \
     apt-get update
 
 # Установка Apache и PHP 8.2 + нужные модули
-RUN apt-get install -y apache2 php8.2 php8.2-cli php8.2-common php8.2-mysql php8.2-xml php8.2-curl php8.2-zip php8.2-gd php8.2-mbstring php8.2-soap php8.2-intl php8.2-readline php8.2-bcmath libapache2-mod-php8.2 unzip git
+RUN apt-get install -y apache2 php8.2 php8.2-cli php8.2-common php8.2-mysql php8.2-pgsql php8.2-xml php8.2-curl php8.2-zip php8.2-gd php8.2-mbstring php8.2-soap php8.2-intl php8.2-readline php8.2-bcmath libapache2-mod-php8.2 unzip git
 
 # Копируем Moodle (если он уже в папке)
 COPY . /var/www/html
