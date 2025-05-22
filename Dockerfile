@@ -12,16 +12,6 @@ RUN wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add - && \
 # Установка Apache и PHP 8.2 + нужные модули
 RUN apt-get install -y apache2 php8.2 php8.2-cli php8.2-common php8.2-mysql php8.2-pgsql php8.2-xml php8.2-curl php8.2-zip php8.2-gd php8.2-mbstring php8.2-soap php8.2-intl php8.2-readline php8.2-bcmath libapache2-mod-php8.2 unzip git
 
-# Установка MariaDB
-RUN apt-get update && apt-get install -y mariadb-server
-
-# Настройка базы moodle
-RUN service mysql start && \
-    mysql -e "CREATE DATABASE moodle;" && \
-    mysql -e "CREATE USER 'root'@'localhost' IDENTIFIED BY '123456';" && \
-    mysql -e "GRANT ALL PRIVILEGES ON moodle.* TO 'root'@'localhost';" && \
-    mysql -e "FLUSH PRIVILEGES;"
-
 
 # Копируем Moodle (если он уже в папке)
 COPY . /var/www/html
