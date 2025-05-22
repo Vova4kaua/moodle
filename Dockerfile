@@ -17,6 +17,10 @@ COPY . /var/www/html
 
 # Права доступа
 RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
+# Создать каталог moodledata и дать права
+RUN mkdir -p /var/www/moodledata && \
+    chown -R www-data:www-data /var/www/moodledata && \
+    chmod -R 0777 /var/www/moodledata
 
 # Добавляем ServerName, чтобы не было ворнинга
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
