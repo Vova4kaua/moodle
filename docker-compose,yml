@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  moodle:
+    build: .
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    environment:
+      MOODLE_DB_HOST: db
+      MOODLE_DB_USER: root
+      MOODLE_DB_PASSWORD: 123456
+      MOODLE_DB_NAME: moodle
+
+  db:
+    image: mariadb:10.6
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: moodle
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
