@@ -19,8 +19,12 @@ RUN apt-get install -y apache2 \
 # Настройка PHP
 RUN echo "max_input_vars = 5000" > /etc/php/8.2/apache2/conf.d/99-moodle.ini
 
-# Права на файлы и директорию moodledata
-RUN mkdir -p /var/www/moodledata && \
+# Копируем весь проект
+COPY . /var/www/html
+
+# Права на файлы и moodledata
+RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html && \
+    mkdir -p /var/www/moodledata && \
     chown -R www-data:www-data /var/www/moodledata && \
     chmod -R 777 /var/www/moodledata
 
