@@ -9,19 +9,12 @@ RUN wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add - && \
     echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list && \
     apt-get update
 
-# Установка Apache + PHP + модули, нужные для Moodle
-RUN apt-get update && apt-get install -y \
-    lsb-release apt-transport-https ca-certificates wget gnupg2 curl software-properties-common && \
-    add-apt-repository ppa:ondrej/php && \
-    apt-get update && apt-get install -y \
-    apache2 php8.2 php8.2-cli php8.2-common php8.2-mysql \
-    php8.2-xml php8.2-curl php8.2-zip php8.2-gd php8.2-mbstring \
-    php8.2-soap php8.2-intl php8.2-readline php8.2-bcmath \
-    php8.2-fileinfo php8.2-exif php8.2-tokenizer php8.2-json \
-    php8.2-sodium php8.2-opcache php8.2-dom php8.2-ctype \
-    php8.2-simplexml php8.2-xmlreader \
-    unzip git curl && \
-    apt-get clean
+
+RUN apt-get install -y apache2 \
+    php8.2 php8.2-cli php8.2-common php8.2-mysql \
+    php8.2-xml php8.2-curl php8.2-zip php8.2-gd \
+    php8.2-mbstring php8.2-soap php8.2-intl \
+    php8.2-bcmath libapache2-mod-php8.2 unzip
 
 
 # Настройка PHP
