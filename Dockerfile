@@ -23,7 +23,6 @@ RUN echo "max_input_vars = 5000" > /etc/php/8.2/apache2/conf.d/99-moodle.ini
 RUN mkdir -p /var/www/moodledata && \
     chown -R www-data:www-data /var/www/moodledata && \
     chmod -R 777 /var/www/moodledata
-    chown -R www-data:www-data /var/www/moodledata && chmod -R 777 /var/www/moodledata
 
 # Убираем ворнинг Apache
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
